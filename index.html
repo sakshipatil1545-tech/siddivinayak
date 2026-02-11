@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Trails · Siddhivinayak</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Modern, clean font -->
+    <style>
+        /* ----- RESET & GLOBAL ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0b1a2e;  /* deep ocean night */
+            color: #e7f0fd;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Import Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap');
+
+        /* ----- GLASS & DARK THEME UTILITIES ----- */
+        .glass-panel {
+            background: rgba(18, 30, 46, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(74, 144, 226, 0.25);
+            border-radius: 32px;
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ----- HEADER / NAV (different layout) ----- */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 16px;
+            border-bottom: 1px solid rgba(100, 210, 255, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .logo-icon {
+            font-size: 2rem;
+            color: #6dc7ff;
+            filter: drop-shadow(0 0 8px #0055a8);
+        }
+        .brand-name {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #c1e6ff, #a0d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-tag {
+            background: rgba(0, 150, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #2f7fbf;
+            color: #cde9ff;
+            margin-left: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #d3eaff;
+            font-size: 1.05rem;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 6px;
+        }
+        .nav-links a:hover {
+            border-bottom-color: #4ab5ff;
+            color: white;
+        }
+
+        /* ----- HERO SECTION – split, bold ----- */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 0 40px;
+            align-items: center;
+        }
+
+        .hero-left .badge {
+            background: #003a5e;
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #b2e6ff;
+            border: 1px solid #2f9ed6;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-left h1 {
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+        .accent-glow {
+            color: #ffffff;
+            background: linear-gradient(145deg, #fff, #b3e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px #0080ff70;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #c2d9f0;
+            margin-bottom: 32px;
+            max-width: 90%;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+        .btn-primary {
+            background: linear-gradient(165deg, #006fc2, #004d8c);
+            border: none;
+            padding: 14px 38px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #48b5ff;
+            box-shadow: 0 8px 20px #001e3b;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+        .btn-primary i {
+            font-size: 1.2rem;
+        }
+        .btn-primary:hover {
+            background: #005bb5;
+            border-color: #a3dcff;
+            box-shadow: 0 8px 25px #003e7e;
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(0, 174, 255, 0.6);
+            padding: 14px 38px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #e0f0ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.25s;
+        }
+        .btn-outline:hover {
+            background: rgba(0,145,255,0.1);
+            border-color: #00b0ff;
+        }
+
+        .hero-right {
+            background: radial-gradient(circle at 80% 30%, #103a53, #02111d);
+            border-radius: 48px 48px 48px 0;
+            padding: 40px 30px;
+            border: 1px solid #245f7e;
+            box-shadow: -20px 25px 40px #00000035;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stats-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            width: 100%;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #9cd6ff;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: #adcfeb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        /* ----- SERVICES – horizontal ribbon style (different) ----- */
+        .ribbon-title {
+            text-align: center;
+            margin: 80px 0 30px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        .ribbon-title span {
+            background: #001e32;
+            padding: 6px 22px;
+            border-radius: 100px;
+            border-left: 5px solid #3aa8ff;
+        }
+
+        .service-strip {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 8px 30px;
+            scrollbar-width: thin;
+            scrollbar-color: #0077be #021a29;
+        }
+        .service-strip::-webkit-scrollbar {
+            height: 8px;
+        }
+        .service-strip::-webkit-scrollbar-thumb {
+            background: #0f6290;
+            border-radius: 10px;
+        }
+        .service-tile {
+            min-width: 260px;
+            background: rgba(12, 33, 53, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid #2d6e8f;
+            border-radius: 28px;
+            padding: 32px 24px;
+            transition: 0.2s;
+            border-bottom: 4px solid transparent;
+        }
+        .service-tile:hover {
+            border-bottom-color: #00aeff;
+            background: #0e2e44;
+            transform: translateY(-6px);
+        }
+        .service-icon {
+            font-size: 2.6rem;
+            margin-bottom: 18px;
+            color: #84d0ff;
+        }
+        .service-tile h3 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .service-tile p {
+            color: #c0daf5;
+            margin-bottom: 24px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 6px 0;
+            color: #b0defa;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-list i {
+            color: #5dc8ff;
+            font-size: 0.8rem;
+        }
+
+        /* ----- WHY US – alternate layout (full width glass) ----- */
+        .why-module {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            margin: 90px 0;
+            background: #0a1f2e;
+            border-radius: 56px;
+            padding: 48px 48px;
+            border: 1px solid #31698e;
+            box-shadow: inset 0 0 0 1px #173e53, 0 20px 30px #00000030;
+        }
+
+        .why-left h2 {
+            font-size: 2.4rem;
+            font-weight: 650;
+            margin-bottom: 28px;
+        }
+        .why-left h2 i {
+            color: #41b3ff;
+            margin-right: 12px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        .trust-card {
+            background: #0e2637;
+            padding: 22px 20px;
+            border-radius: 24px;
+            border-left: 6px solid #3d9fd7;
+        }
+        .trust-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: #dcf0ff;
+        }
+
+        .why-right {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="%234db8ff" d="M20 30 L50 10 L80 30 L80 70 L50 90 L20 70 Z"/></svg>'), #022c3d;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            border-radius: 32px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .why-right p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #e4f0ff;
+            line-height: 1.5;
+            border-bottom: 1px dashed #4797c2;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+        }
+        .highlight {
+            color: #b2ecff;
+            font-weight: 700;
+        }
+
+        /* ----- CONTACT – minimal bold grid ----- */
+        .contact-zone {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0 40px;
+        }
+        .contact-block {
+            background: #0b1e2b;
+            padding: 32px 24px;
+            border-radius: 24px;
+            border: 1px solid #31688b;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .contact-block i {
+            font-size: 2.4rem;
+            color: #6ec3ff;
+            margin-bottom: 20px;
+        }
+        .contact-block h4 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+        .contact-block p {
+            color: #b9def5;
+            line-height: 1.6;
+        }
+
+        .app-badge {
+            display: inline-block;
+            margin-top: 24px;
+            background: #002b45;
+            padding: 12px 30px;
+            border-radius: 44px;
+            font-weight: 600;
+            border: 1px solid #0079b3;
+            color: #c9edff;
+        }
+
+        footer {
+            padding: 40px 0 30px;
+            border-top: 1px solid #1d4962;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            color: #99c1de;
+            flex-wrap: wrap;
+        }
+
+        /* responsive touch */
+        @media (max-width: 900px) {
+            .hero-split { grid-template-columns: 1fr; }
+            .why-module { grid-template-columns: 1fr; }
+            .contact-zone { grid-template-columns: 1fr; }
+            .top-bar { flex-direction: column; align-items: start; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER completely reimagined, no generic navigation, more personalized -->
+        <div class="top-bar">
+            <div class="logo-area">
+                <i class="fas fa-compass logo-icon"></i>
+                <span class="brand-name">Siddhivinayak</span>
+                <span class="brand-tag"><i class="fas fa-star" style="color: gold;"></i> ELITE</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Journeys</a>
+                <a href="#">Fleet</a>
+                <a href="#">Concierge</a>
+                <a href="#">App</a>
+            </div>
+        </div>
+
+        <!-- HERO – split screen with strong typography & stats (DIFFERENT) -->
+        <div class="hero-split">
+            <div class="hero-left">
+                <span class="badge"><i class="fas fa-bolt"></i> SAME-DAY CONFIRMATION</span>
+                <h1>
+                    <span class="accent-glow">Uncompromised</span><br>
+                    Ride Excellence
+                </h1>
+                <p class="hero-desc">
+                    Not just cabs — fluid travel. From sedan to SUV, every journey is insured, tracked, and whisper-quiet.
+                </p>
+                <div class="btn-group">
+                    <button class="btn-primary"><i class="fas fa-calendar-check"></i> Reserve</button>
+                    <button class="btn-outline"><i class="fas fa-qrcode"></i> Scan & Ride</button>
+                </div>
+            </div>
+            <div class="hero-right glass-panel">
+                <div class="stats-mini">
+                    <div class="stat-item">
+                        <div class="stat-number">850+</div>
+                        <div class="stat-label">Premium Fleet</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.6%</div>
+                        <div class="stat-label">On-Time</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24x7</div>
+                        <div class="stat-label">Concierge</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">★ 4.98</div>
+                        <div class="stat-label">Guest rating</div>
+                    </div>
+                </div>
+                <!-- additional subtle graphic -->
+                <p style="margin-top: 30px; color: #98d0ff; border-top: 1px solid #256b8d; padding-top: 20px; width: 100%; text-align: center; letter-spacing: 1px;">
+                    <i class="fas fa-shield-alt"></i> 100% verified drivers • GPS • live share
+                </p>
+            </div>
+        </div>
+
+        <!-- SERVICES – horizontal scrolling, dark glass tiles. completely distinct from card grids -->
+        <h2 class="ribbon-title"><span><i class="fas fa-circle-nodes" style="color: #57c8ff;"></i>  core experiences</span></h2>
+        <div class="service-strip">
+            <!-- service 1 -->
+            <div class="service-tile">
+                <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                <h3>Luxury<br>Sedan</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Mercedes / Skoda</li>
+                    <li><i class="fas fa-check-circle"></i> Chauffeur included</li>
+                    <li><i class="fas fa-check-circle"></i> Refreshments</li>
+                </ul>
+            </div>
+            <!-- service 2 -->
+            <div class="service-tile">
+                <div class="service-icon"><i class="fas fa-plane-arrival"></i></div>
+                <h3>Airport<br>Elite</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Flight tracking</li>
+                    <li><i class="fas fa-check-circle"></i> 90 min free wait</li>
+                    <li><i class="fas fa-check-circle"></i> Meet & greet</li>
+                </ul>
+            </div>
+            <!-- service 3 -->
+            <div class="service-tile">
+                <div class="service-icon"><i class="fas fa-mountain"></i></div>
+                <h3>Outstation<br>Immersion</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Mumbai – Goa</li>
+                    <li><i class="fas fa-check-circle"></i> Pune – Mahableshwar</li>
+                    <li><i class="fas fa-check-circle"></i> Custom itinerary</li>
+                </ul>
+            </div>
+            <!-- service 4 -->
+            <div class="service-tile">
+                <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Corporate<br>Sync</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Central billing</li>
+                    <li><i class="fas fa-check-circle"></i> Monthly reports</li>
+                    <li><i class="fas fa-check-circle"></i> Priority dispatch</li>
+                </ul>
+            </div>
+            <!-- service 5 (extra, gives fresh vibe) -->
+            <div class="service-tile">
+                <div class="service-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                <h3>Executive<br>Charter</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> 6–12 seater</li>
+                    <li><i class="fas fa-check-circle"></i> Event transfers</li>
+                    <li><i class="fas fa-check-circle"></i> 5-star support</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- WHY US – unique split, not used in any of your given sites (totally different angle) -->
+        <div class="why-module">
+            <div class="why-left">
+                <h2><i class="fas fa-gem"></i> Why we’re different</h2>
+                <div class="trust-grid">
+                    <div class="trust-card">
+                        <h4>⚡ 12-min ETA</h4>
+                        <p>Average arrival in metro areas. fastest in western india.</p>
+                    </div>
+                    <div class="trust-card">
+                        <h4>🧊 Sanitized</h4>
+                        <p>Hospital-grade cleaning after every trip. certified.</p>
+                    </div>
+                    <div class="trust-card">
+                        <h4>🔐 Zero surge</h4>
+                        <p>Fixed fares for members. no hidden peak.</p>
+                    </div>
+                    <div class="trust-card">
+                        <h4>📱 multilingual</h4>
+                        <p>Marathi, Hindi, English support. real humans.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="why-right">
+                <p><span class="highlight">Siddhivinayak Tours</span> — reimagined for the new traveller. We’ve retired old-school queues and meter confusion. Your phone = your key.</p>
+                <div style="display: flex; gap: 20px;">
+                    <span style="background: #003f5f; padding: 10px 24px; border-radius: 40px;"><i class="fas fa-cloud-moon"></i> night rides</span>
+                    <span style="background: #003f5f; padding: 10px 24px; border-radius: 40px;"><i class="fas fa-crown"></i> loyalty</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT – 3 column block, less text, more icons & apps (diff style) -->
+        <div class="contact-zone">
+            <div class="contact-block">
+                <i class="fas fa-map-pin"></i>
+                <h4>Digital First</h4>
+                <p>Mumbai · Pune · Nashik · Nagpur<br>instant booking via app/WhatsApp</p>
+                <span class="app-badge"><i class="fab fa-whatsapp"></i> +91 98765 43211</span>
+            </div>
+            <div class="contact-block">
+                <i class="fas fa-phone-volume"></i>
+                <h4>24/7 command</h4>
+                <p>toll free: 1800-889-6644<br>international: +91 22 4911 0000</p>
+                <span class="app-badge"><i class="fas fa-headset"></i> live assist</span>
+            </div>
+            <div class="contact-block">
+                <i class="fas fa-download"></i>
+                <h4>Nova Connect</h4>
+                <p>Exclusive app-only fares. Book, track, tip — all in one.</p>
+                <span class="app-badge"><i class="fab fa-apple"></i> <i class="fab fa-google-play"></i> download</span>
+            </div>
+        </div>
+
+        <!-- footer – clean, minimal different from typical copyright line -->
+        <footer>
+            <span>© 2025 Siddhivinayak Tours • Nova series</span>
+            <span style="display: flex; gap: 24px;">
+                <a href="#" style="color: #b0defa; text-decoration: none;"><i class="fab fa-instagram"></i> </a>
+                <a href="#" style="color: #b0defa; text-decoration: none;"><i class="fab fa-x-twitter"></i> </a>
+                <a href="#" style="color: #b0defa; text-decoration: none;">trust & safety</a>
+            </span>
+        </footer>
+
+    </div> <!-- container end -->
+</body>
+</html>
